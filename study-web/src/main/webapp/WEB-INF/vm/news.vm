@@ -1,0 +1,28 @@
+<html>
+<body>
+<pre>
+ Hello Lily Velocity
+
+##这里是注解
+#*
+* 这里还是注解
+* *#
+
+    username: $!{username}
+#*
+ Thus begins a multi-line comment. Online visitors won't
+ see this text because the Velocity Templating Engine will
+ ignore it.
+*#
+
+#**
+ This is a VTL comment block and
+ may be used to store such information
+ as the document author and versioning
+ information:
+ @author
+ @version 5
+ *#
+  </pre>
+</body>
+</html>
