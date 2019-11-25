@@ -1,7 +1,6 @@
 package com.jd.app.order.servlet;
 
 import com.jd.app.order.bean.Cat;
-import com.jd.app.order.bean.Dog;
 import com.jd.app.order.bean.Master;
 import com.jd.app.order.beanfactory.BirdFactoryBean;
 import com.jd.app.order.condition.MasterCondition;
@@ -22,7 +21,7 @@ import org.springframework.util.StringValueResolver;
 @PropertySource(value = {"classpath:springStudy.properties"})
 @ComponentScan(basePackages = {"com.jd.app.order"},
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)})
-@Import({Dog.class, MyImportSelector.class, MyBeanDefinitionRegistor.class})
+@Import({OtherConf.class, MyImportSelector.class, MyBeanDefinitionRegistor.class})
 public class MainConfig implements EmbeddedValueResolverAware{
 
     @Getter

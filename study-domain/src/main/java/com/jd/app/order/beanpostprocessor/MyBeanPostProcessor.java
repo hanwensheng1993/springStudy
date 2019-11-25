@@ -9,12 +9,14 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 /**
  * @author hanwensheng
  * @date 2019/11/13
  * MyBeanPostProcessor
  */
+@Component
 public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostProcessor,BeanDefinitionRegistryPostProcessor {
 
     /**
