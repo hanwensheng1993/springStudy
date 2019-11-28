@@ -7,6 +7,7 @@ import com.jd.app.order.condition.MasterCondition;
 import com.jd.app.order.importSelect.MyImportSelector;
 import com.jd.app.order.importbeandefinitionregistor.MyBeanDefinitionRegistor;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class MainConfig implements EmbeddedValueResolverAware{
     @Getter
     private String myName;
 
-    @Bean
+    @Bean(autowire = Autowire.NO)
 //    @Scope(value = "prototype")
     Master master() {
         return new Master();
@@ -44,6 +45,11 @@ public class MainConfig implements EmbeddedValueResolverAware{
     public BirdFactoryBean birdFactoryBean(){
         return new BirdFactoryBean();
     }
+
+//    @Bean
+//    public List cats(){
+//        return Arrays.asList("1","2");
+//    }
 
     /**
      * Set the StringValueResolver to use for resolving embedded definition values.

@@ -19,6 +19,8 @@ public class Master implements InitializingBean,DisposableBean {
     private String name;
     private String age;
     private List<Cat> cats;
+//    @Autowired
+    private Cat cat;
 
     /**
      * Invoked by the containing {@code BeanFactory} on destruction of a bean.
