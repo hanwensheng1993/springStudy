@@ -7,4 +7,9 @@ package com.jd.app.order.bean;
  */
 public class Mouse {
 
+//    @Bean
+    public Temp temp(){
+        return new Temp();
+    }
+
 }

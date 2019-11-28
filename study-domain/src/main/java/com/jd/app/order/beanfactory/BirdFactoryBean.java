@@ -90,6 +90,6 @@ public class BirdFactoryBean implements FactoryBean<Bird> {
      */
     @Override
     public boolean isSingleton() {
-        return false;
+        return true;
     }
 }

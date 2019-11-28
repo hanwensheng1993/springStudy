@@ -8,6 +8,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.core.PriorityOrdered;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
  * MyBeanPostProcessor
  */
 @Component
-public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostProcessor,BeanDefinitionRegistryPostProcessor {
+public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostProcessor,BeanDefinitionRegistryPostProcessor,PriorityOrdered {
 
     /**
      * Modify the application context's internal bean definition registry after its
@@ -30,7 +31,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostPro
      */
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-
+        System.out.println("com.jd.app.order.beanpostprocessor.MyBeanPostProcessor.postProcessBeanDefinitionRegistry 已执行");
     }
 
     /**
@@ -44,7 +45,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostPro
      */
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-
+        System.out.println("com.jd.app.order.beanpostprocessor.MyBeanPostProcessor.postProcessBeanFactory 已执行");
     }
 
     /**
@@ -64,7 +65,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostPro
     @Nullable
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return null;
+        return bean;
     }
 
     /**
@@ -92,6 +93,23 @@ public class MyBeanPostProcessor implements BeanPostProcessor,BeanFactoryPostPro
     @Nullable
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        return null;
+        return bean;
+    }
+
+    /**
+     * Get the order value of this object.
+     * <p>Higher values are interpreted as lower priority. As a consequence,
+     * the object with the lowest value has the highest priority (somewhat
+     * analogous to Servlet {@code load-on-startup} values).
+     * <p>Same order values will result in arbitrary sort positions for the
+     * affected objects.
+     *
+     * @return the order value
+     * @see #HIGHEST_PRECEDENCE
+     * @see #LOWEST_PRECEDENCE
+     */
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }

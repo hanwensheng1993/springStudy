@@ -28,12 +28,12 @@ public class MainConfig implements EmbeddedValueResolverAware{
     private String myName;
 
     @Bean
-    @Scope(value = "prototype")
+//    @Scope(value = "prototype")
     Master master() {
         return new Master();
     }
 
-    @Bean(initMethod = "init",destroyMethod = "destroy")
+    @Bean(initMethod = "init",destroyMethod = "destroy",name = {"cat2","cat","cat3"})
     @Conditional(value = {MasterCondition.class})
 //    @Profile("dev")
     public Cat cat() {
