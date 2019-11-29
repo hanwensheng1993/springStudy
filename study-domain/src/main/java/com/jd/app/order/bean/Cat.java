@@ -3,7 +3,6 @@ package com.jd.app.order.bean;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 
 /**
  * @author hanwensheng
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Primary;
  */
 @Data
 @ToString
-@Primary
 public class Cat {
 
     @Value("tom")

@@ -24,6 +24,7 @@ public class ConfigurationAnno {
 //        System.out.println(context.getBean("cat"));
 //        System.out.println(context.getBean("mainConfig",MainConfig.class).getMyName());
 //        Arrays.stream(context.getBeanDefinitionNames()).forEach(s -> System.out.println(s));
+        System.out.println(context.getBean("master"));
         context.close();
     }
 

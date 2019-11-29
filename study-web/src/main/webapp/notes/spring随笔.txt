@@ -1,0 +1,41 @@
+import进来的bean会被认为是configClass
+
+比如想要校验basePackage 路径配置是否正确，可以org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider#scanCandidateComponents打个断点，查看最终扫描的路径到底是什么
+
+componentScan优先级很高，几乎是最先扫描到容器bean定义中的
+
+DeferredImportSelector  springboot自动注入？
+
+configurationClasses会存放import跟componentScan的bean以及configuration类本身
+
+在第一波postprocess的时候，只把主配置类跟标注了@component的bean定义给加载到容器中去了
+
+如果某个处理过程十分复杂，可以将其作为该bean的成员变量储存起来，以便下次使用
+
+getObjectFromFactoryBean是获取工厂bean的
+
+instantiateUsingFactoryMethod:通过@Bean注解的bean实例化调用该方法
+@Autowired如果标注在构造方法上，就通过 autowireConstructor方法进行反射实例化
+如果是包扫描形式或者其他剩余的，那么就通过instantiateBean来进行反射实例化
+
+resolveBeforeInstantiation找出了aop的切面及advice
+bean的后置处理器实现了aop的主要功能，applyBeanPostProcessorsAfterInitialization
+
+
+多级缓存使用情况：
+1、如果最简单不存在依赖情况，那么首先在创建bean的时候会在singletonsCurrentlyInCreation里面标记当前正在创建的bean，然后把刚刚实例化的bean放到singletonFactories里面，以备不时之需，然后如果无依赖，顺利创建完成，那么会将bean从singletonsCurrentlyInCreation移除，然后放入单例缓存迟singletonObjects，并将singletonFactories和earlySingletonObjects里的bean移除，并在registeredSingletons注册已经创建的bean
+2、如果存在循环依赖，以最简单的A、B两个bean相互依赖为例，首先创建A的时候，会在singletonsCurrentlyInCreation里面标记当前正在创建的bean，然后把刚刚实例化的bean放到singletonFactories里面，然后在populateBean的时候发现A实例化的时候依赖B，这时候会去调getBean，然后从缓存池中找，没发现，然后就开始创建B的流程，然后又在singletonsCurrentlyInCreation里面标记当前正在创建的bean-B，把B放到singletonFactories里面，然后在populateBean的时候发现B实例化的时候依赖A，然后又会去调getBean方法，发现在singletonObjects和earlySingletonObjects里面都没有但是可以从singletonFactories里面发现A，这时会调用ObjectFactory<A>的getObject方法，返回A的实例化bean（此时A还没有初始化完，还有属性未设置）并从singletonFactories中移除然后放入earlySingletonObjects中（所以这个earlySingletonObjects其实就是用来中转的一个临时缓存池），然后此时bean-A可以顺利的设置到bean-B的属性中，然后如果其他情况一切顺利，B顺利创建初始化完成，会将bean-B从singletonsCurrentlyInCreation移除，然后放入单例缓存池singletonObjects，并将singletonFactories和earlySingletonObjects里的bean移除，并在registeredSingletons注册已经创建的bean，然后这个时候bean-A的populateBean就可以继续进行初始化属性设置，然后一切顺利的话，初始化完成，然后在singletonsCurrentlyInCreation移除bean-A，然后放入单例缓存迟singletonObjects，并将singletonFactories和earlySingletonObjects里的bean移除，并在registeredSingletons注册已经创建的bean
+ps：prototype的情况下，如果相互依赖，会借助prototypesCurrentlyInCreation来判断，然后抛出异常BeanCurrentlyInCreationException
+
+
+spring认为的简单属性         
+   1. CharSequence 接口的实现类，比如 String         
+   2. Enum         
+   3. Date         
+   4. URI/URL         
+   5. Number 的继承类，比如 Integer/Long         
+   6. byte/short/int... 等基本类型         
+   7. Locale         
+   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
+
+解析@Value注解的方法 ：  getAutowireCandidateResolver().getSuggestedValue(descriptor);

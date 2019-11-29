@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+        default-autowire="byName">
 
-<!--    <bean id="catXml" class="com.jd.app.order.bean.Cat" name="cat2;cat3,cat4 cat5">
+    <bean class="com.jd.app.order.bean.Master" id="master">
+        <property name="cat" ref="catXml"></property>
+    </bean>
+    <bean id="catXml" class="com.jd.app.order.bean.Cat" name="cat2;cat3,cat4 cat5">
         <property name="age" value="1"/>
         <property name="name" value="tom"/>
-    </bean>-->
+    </bean>
 </beans>

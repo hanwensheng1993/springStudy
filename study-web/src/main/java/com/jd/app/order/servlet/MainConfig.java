@@ -28,7 +28,8 @@ public class MainConfig implements EmbeddedValueResolverAware{
     @Getter
     private String myName;
 
-    @Bean(autowire = Autowire.NO)
+    @Bean(autowire = Autowire.BY_NAME)
+//    @Bean(autowire = Autowire.BY_TYPE)
 //    @Scope(value = "prototype")
     Master master() {
         return new Master();
@@ -51,6 +52,11 @@ public class MainConfig implements EmbeddedValueResolverAware{
 //        return Arrays.asList("1","2");
 //    }
 
+//    @Bean
+//    @Primary
+//    public SmallCat smallCat(){
+//        return new SmallCat();
+//    }
     /**
      * Set the StringValueResolver to use for resolving embedded definition values.
      *

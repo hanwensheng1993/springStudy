@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @ToString
 public class Master implements InitializingBean,DisposableBean {
 
+    @Value("hws")
     private String name;
     private String age;
     private List<Cat> cats;

@@ -12,7 +12,9 @@ public class XmlConfig {
 
     public static void main(String[] args) {
         XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(new ClassPathResource("spring.xml"));
+        Object master = xmlBeanFactory.getBean("master");
+//        System.out.println(master);
         Object catXml = xmlBeanFactory.getBean("cat3");
-        System.out.println(catXml);
+//        System.out.println(catXml);
     }
 }
