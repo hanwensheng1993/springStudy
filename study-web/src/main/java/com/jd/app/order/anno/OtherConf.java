@@ -1,4 +1,4 @@
-package com.jd.app.order.servlet;
+package com.jd.app.order.anno;
 
 /**
  * @author hanwensheng

@@ -1,4 +1,4 @@
-package com.jd.app.order.servlet;
+package com.jd.app.order.anno;
 
 import com.jd.app.order.bean.Cat;
 import com.jd.app.order.bean.Master;

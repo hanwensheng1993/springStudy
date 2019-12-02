@@ -18,7 +18,7 @@ instantiateUsingFactoryMethod:通过@Bean注解的bean实例化调用该方法
 @Autowired如果标注在构造方法上，就通过 autowireConstructor方法进行反射实例化
 如果是包扫描形式或者其他剩余的，那么就通过instantiateBean来进行反射实例化
 
-resolveBeforeInstantiation找出了aop的切面及advice
+resolveBeforeInstantiation查看了所有容器的bean来找aspectj的类，然后找出所有通知Advisor
 bean的后置处理器实现了aop的主要功能，applyBeanPostProcessorsAfterInitialization
 
 
@@ -39,3 +39,10 @@ spring认为的简单属性         
    8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
 
 解析@Value注解的方法 ：  getAutowireCandidateResolver().getSuggestedValue(descriptor);
+
+TCC切换数据源，读写分离
+
+后置通知finally
+异常通知try-catch
+
+aop核心类：AnnotationAwareAspectJAutoProxyCreator

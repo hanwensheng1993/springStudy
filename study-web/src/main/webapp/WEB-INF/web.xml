@@ -26,4 +26,13 @@
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
 
+<!--    <servlet>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>com.jd.app.order.servlet.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/myServlet</url-pattern>
+    </servlet-mapping>-->
+
 </web-app>
