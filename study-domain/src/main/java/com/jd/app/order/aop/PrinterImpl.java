@@ -11,6 +11,7 @@ public class PrinterImpl implements Printer {
         System.out.println("执行目标方法print：str1 = " + str1 + "\tstr2 =" + str2);
         this.printIntern();
 //        ((PrinterImpl) AopContext.currentProxy()).printIntern();
+//        int exception = 1/0;
         return str1+str2;
     }
 
