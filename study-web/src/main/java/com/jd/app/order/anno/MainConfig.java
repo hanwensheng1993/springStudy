@@ -2,8 +2,8 @@ package com.jd.app.order.anno;
 
 import com.jd.app.order.bean.Cat;
 import com.jd.app.order.bean.Master;
+import com.jd.app.order.bean.SmallCat;
 import com.jd.app.order.beanfactory.BirdFactoryBean;
-import com.jd.app.order.condition.MasterCondition;
 import com.jd.app.order.importSelect.MyImportSelector;
 import com.jd.app.order.importbeandefinitionregistor.MyBeanDefinitionRegistor;
 import lombok.Getter;
@@ -18,7 +18,8 @@ import org.springframework.util.StringValueResolver;
  * @date 2019/9/17
  * MainConfig
  */
-@Configuration
+
+@Configuration()
 @PropertySource(value = {"classpath:springStudy.properties"})
 @ComponentScan(basePackages = {"com.jd.app.order"},
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)})
@@ -35,9 +36,9 @@ public class MainConfig implements EmbeddedValueResolverAware{
         return new Master();
     }
 
-    @Bean(initMethod = "init",destroyMethod = "destroy",name = {"cat2","cat","cat3"})
-    @Conditional(value = {MasterCondition.class})
 //    @Profile("dev")
+//    @Conditional(value = {MasterCondition.class})
+    @Bean(initMethod = "init",destroyMethod = "destroy",name = {"cat2","cat","cat3"},autowire = Autowire.BY_NAME)
     public Cat cat() {
         return new Cat();
     }
@@ -52,11 +53,12 @@ public class MainConfig implements EmbeddedValueResolverAware{
 //        return Arrays.asList("1","2");
 //    }
 
-//    @Bean
+//    @Bean(autowire = Autowire.BY_NAME)
 //    @Primary
-//    public SmallCat smallCat(){
-//        return new SmallCat();
-//    }
+    public SmallCat smallCat(){
+        return new SmallCat();
+    }
+
     /**
      * Set the StringValueResolver to use for resolving embedded definition values.
      *

@@ -19,7 +19,9 @@ public class Cat {
     private String age;
     @Value("${cat.area}")
     private String area;
-    private Master master;
+//    @Autowired
+    protected Master master;
+
 
     public void init(){
         System.out.println("Cat init");

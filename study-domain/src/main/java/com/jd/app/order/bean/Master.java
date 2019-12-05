@@ -4,9 +4,11 @@ import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author hanwensheng
@@ -21,8 +23,10 @@ public class Master implements InitializingBean,DisposableBean {
     private String name;
     private String age;
     private List<Cat> cats;
-//    @Autowired
     private Cat cat;
+    private Cat smallCat;
+    @Autowired
+    private Map<String,Cat> catMap;
 
     /**
      * Invoked by the containing {@code BeanFactory} on destruction of a bean.
