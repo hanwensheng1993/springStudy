@@ -8,7 +8,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @date 2019/12/2
  * AopConf
  */
-//@Configuration
+//@EnableTransactionManagement
 //@EnableAspectJAutoProxy
 @EnableAspectJAutoProxy(exposeProxy = true)
 //@EnableAspectJAutoProxy(proxyTargetClass = true)

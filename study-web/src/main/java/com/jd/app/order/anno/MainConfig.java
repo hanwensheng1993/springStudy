@@ -59,6 +59,10 @@ public class MainConfig implements EmbeddedValueResolverAware{
         return new SmallCat();
     }
 
+//    @Bean(autowire = Autowire.NO)
+//    public Temp temp(){
+//        return new Temp();
+//    }
     /**
      * Set the StringValueResolver to use for resolving embedded definition values.
      *
