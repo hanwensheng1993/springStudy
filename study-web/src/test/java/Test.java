@@ -10,8 +10,15 @@ import java.util.HashMap;
 public class Test {
     @org.junit.Test
     public void test01(){
-        int i = "jd_765448984cca2".hashCode();
+        int i = 90*24*3600*1000;
         System.out.println(i);
+//        int i2 = Integer.MAX_VALUE;
+//        Object o = i * i2;
+//        System.out.println(i + i2);
+//        System.out.println(o.getClass());
+//        long l = 999l;
+//        Object o = i * l;
+//        System.out.println(o.getClass());
     }
 
 }
